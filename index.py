@@ -49,5 +49,5 @@ def fn_logsave(useridx='', locname='', dataset='', querytext='', dtsave='0000-00
             db.add(lrow)     # добавляем в бд
             db.commit()     # сохраняем изменения
             #print(lrow.id)   # можно получить установленный id
-            message = message + "insert OK № "+str(lrow.Id)
+            message = str(lrow.Id)
             return HTMLResponse(content=message)

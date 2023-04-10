@@ -25,6 +25,7 @@ class Logrow(Base):
 
 app = FastAPI()
 
+
 @app.get("/")
 def read_root():
     html_content = "<h2>WEB SERVER LOGSAVER</h2>"
@@ -43,7 +44,7 @@ def fn_logsave(useridx='', locname='', dataset='', querytext='', dtsave='0000-00
         message = "Одна или несколько переменных не найдены"
         return HTMLResponse(content=message)
     else:
-        # print(querytext)
+        print(querytext)
         message = ""
         # создаем сессию подключения к бд
         with Session(autoflush=False, bind=engine) as db:
@@ -53,7 +54,7 @@ def fn_logsave(useridx='', locname='', dataset='', querytext='', dtsave='0000-00
             db.add(lrow)  # добавляем в бд
             db.commit()  # сохраняем изменения
             # print(lrow.id)   # можно получить установленный id
-            message = message + "insert OK № " + str(lrow.Id)
+            message = str(lrow.Id)
             return HTMLResponse(content=message)
 
 
